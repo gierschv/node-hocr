@@ -78,9 +78,12 @@
 
     Hocr.prototype.processPage = function(dom) {
       var carea, par, _i, _len, _ref, _results;
+      if (dom.attribs.title.indexOf(';') > 0) {
+        dom.attribs.title = dom.attribs.title.split(';')[1].replace(/^\s+/g, '').replace(/\s+$/g, '');
+      }
       this.result.push({
         id: dom.attribs.id,
-        infos: dom.attribs.title,
+        infos: this.processBox(dom.attribs.title),
         par: []
       });
       _ref = dom.children;

@@ -15,7 +15,7 @@ class Hocr
       if (coords.length != 5)
         str
       else
-        { x0: coords[1], y0: coords[2], x1: coords[3], y1: coords[4] } 
+        { x0: coords[1], y0: coords[2], x1: coords[3], y1: coords[4] }
     else
       str
 
@@ -31,7 +31,9 @@ class Hocr
     @processLine elem, idxPage, @result[idxPage].par.length - 1 for elem in dom when elem.attribs.class is 'ocr_line'
 
   processPage: (dom) ->
-    @result.push({id: dom.attribs.id, infos: dom.attribs.title, par:[]})
+    if (dom.attribs.title.indexOf(';') > 0)
+      dom.attribs.title = dom.attribs.title.split(';')[1].replace(/^\s+/g,'').replace(/\s+$/g,'')
+    @result.push({id: dom.attribs.id, infos: @processBox(dom.attribs.title), par:[]})
     for carea in dom.children when carea.attribs.class is 'ocr_carea'
       for par in carea.children when par.attribs.class is 'ocr_par'
         if (par.children)
