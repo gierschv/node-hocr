@@ -1,7 +1,7 @@
 (function() {
   var fs, hocr, util;
 
-  hocr = require('../src/hocr');
+  hocr = require('..');
 
   fs = require('fs');
 
@@ -11,7 +11,7 @@
     if (error) {
       return console.log(error);
     } else {
-      return util.puts(util.inspect(dom, false, null));
+      return util.puts(JSON.stringify(dom));
     }
   });
 
