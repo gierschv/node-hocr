@@ -36,11 +36,13 @@
     };
 
     Hocr.prototype.processWord = function(dom, idxPage, idxPar, idxLine) {
-      return this.result[idxPage].par[idxPar].line[idxLine].words.push({
-        id: dom.attribs.id,
-        infos: this.processBox(dom.attribs.title),
-        data: dom.children[0].children[0].data
-      });
+      if (dom.children && dom.children.length > 0 && dom.children[0].children && dom.children[0].children.length > 0) {
+        return this.result[idxPage].par[idxPar].line[idxLine].words.push({
+          id: dom.attribs.id,
+          infos: this.processBox(dom.attribs.title),
+          data: dom.children[0].children[0].data
+        });
+      }
     };
 
     Hocr.prototype.processLine = function(dom, idxPage, idxPar) {
