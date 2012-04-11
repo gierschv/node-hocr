@@ -19,9 +19,14 @@ class Hocr
     else
       str
 
+  getDataFromChildren: (dom) ->
+    if (dom.children && dom.children[0])
+      @getDataFromChildren(dom.children[0])
+    else
+      dom.data
+
   processWord: (dom, idxPage, idxPar, idxLine) ->
-    if (dom.children && dom.children.length > 0 && dom.children[0].children && dom.children[0].children.length > 0)
-      @result[idxPage].par[idxPar].line[idxLine].words.push({id: dom.attribs.id, infos: @processBox(dom.attribs.title), data: dom.children[0].children[0].data})
+    @result[idxPage].par[idxPar].line[idxLine].words.push({id: dom.attribs.id, infos: @processBox(dom.attribs.title), data: @getDataFromChildren(dom)})
 
   processLine: (dom, idxPage, idxPar) ->
     @result[idxPage].par[idxPar].line.push({id: dom.attribs.id, infos: @processBox(dom.attribs.title), words: []})
