@@ -2,7 +2,7 @@
   "name": "node-hocr",
   "description": "Hocr parser for Node.js",
   "author": "Vincent Giersch <mail@vincent.sh>",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "dependencies": {
     "coffee-script": ">= 1.1.1",
