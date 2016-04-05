@@ -18,9 +18,13 @@
 
     Hocr.prototype.processBox = function(str) {
       var coords;
+      var strTokenLength = 5;
       if (str.indexOf('bbox') === 0) {
         coords = str.split(' ');
-        if (coords.length !== 5) {
+        if(str.indexOf('x_wconf' === 0)) {
+          strTokenLength = 7;
+        }
+        if (coords.length !== strTokenLength) {
           return str;
         } else {
           return {
