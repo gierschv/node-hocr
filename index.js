@@ -21,7 +21,7 @@
       var strTokenLength = 5;
       if (str.indexOf('bbox') === 0) {
         coords = str.split(' ');
-        if(str.indexOf('x_wconf' === 0)) {
+        if(str.indexOf('x_wconf') === 0) {
           strTokenLength = 7;
         }
         if (coords.length !== strTokenLength) {
